@@ -34,11 +34,11 @@ function PasswordGenerator() {
         }
 
         let newPassword = "";
-        for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * characterPool.length);
-            newPassword += characterPool[randomIndex];
-        }
-        setPassword(newPassword);
+       for(let i=0;i<length;i++){
+        const index = Math.floor(Math.random()*characterPool.length)
+        newPassword+=characterPool[index]
+       }
+    setPassword(newPassword)
     };
 
 
