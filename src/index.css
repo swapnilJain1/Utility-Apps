@@ -66,3 +66,25 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.light {
+  --bg: #fff;
+  --text: #222;
+}
+
+.dark {
+  --bg: #222;
+  --text: #fff;
+}
+
+body,
+div.light,
+div.dark {
+  background: var(--bg);
+  color: var(--text);
+}
+.theme-button{
+  padding: 0 10px;
+  position: absolute;
+  right: 250px;
+
+}

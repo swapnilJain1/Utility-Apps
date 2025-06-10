@@ -5,14 +5,17 @@ import PasswordGenerator from "./component/PasswordGenerator"
 import Button from './component/Button'
 import Counter from './component/Counter'
 import GetData from './component/GetData'
+import { useTheme } from "./utlility/ThemeProvider";
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
   const [activeComponent, setActiveComponent] = useState("")
   const handleClick = (name) => {
     setActiveComponent(name)
   }
 
   return (
+    <div className={theme}>
     <div className='app-continer'>
       <div className='button-container' >
        <Button onClick={() => handleClick("SearchButton")}>1. Search Button</Button>
@@ -25,10 +28,14 @@ function App() {
         {activeComponent === "SearchButton" && <SearchButton />}
       {activeComponent === "PasswordGenerator" && <PasswordGenerator />}
       {activeComponent === "Counter" && <Counter />}
-      {activeComponent === "GetData" && <GetData />}
-      
-      
+      {activeComponent === "GetData" && <GetData />} 
       </div>
+
+      
+         <button className='theme-button' onClick={toggleTheme}>
+         {theme === "light" ? "Dark" : "Light"} background ?
+      </button>
+    </div>
 
     </div>
   )
