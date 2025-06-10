@@ -6,6 +6,7 @@ import Button from './component/Button'
 import Counter from './component/Counter'
 import GetData from './component/GetData'
 import { useTheme } from "./utlility/ThemeProvider";
+import AdvanceCounter from './component/AdvanceCounter'
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -14,21 +15,22 @@ function App() {
     setActiveComponent(name)
   }
 
+  const buttonLabel  = [{label:"1. Search Button", component:<SearchButton />, searchTerm:"SearchButton"},
+    {label:"2. Password Generator", component:<PasswordGenerator />, searchTerm:"PasswordGenerator"},
+    {label:"3. Counter", component:<Counter />, searchTerm:"Counter"},
+    {label:"4. Get Data", component:<GetData />, searchTerm:"GetData"},
+    {label:"5. Advance Counter", component:<AdvanceCounter />, searchTerm:"AdvCounter"},
+  ]
+
   return (
     <div className={theme}>
     <div className='app-continer'>
-      <div className='button-container' >
-       <Button onClick={() => handleClick("SearchButton")}>1. Search Button</Button>
-        <Button onClick={() => handleClick("PasswordGenerator")}>2. Password Generator</Button>
-        <Button onClick={() => handleClick("Counter")}>3. Counter</Button>
-        <Button onClick={() => handleClick("GetData")}>4. Get Data</Button>
+      <div>
+        {buttonLabel.map((text,id)=><div className='button-container' key={id}><Button onClick={()=>handleClick(text.searchTerm)}>{text.label}</Button></div>)}
       </div>
 
       <div>
-        {activeComponent === "SearchButton" && <SearchButton />}
-      {activeComponent === "PasswordGenerator" && <PasswordGenerator />}
-      {activeComponent === "Counter" && <Counter />}
-      {activeComponent === "GetData" && <GetData />} 
+        {buttonLabel.map(text=>activeComponent===text.searchTerm && text.component)}
       </div>
 
       
